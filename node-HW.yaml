@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-world
+  labels:
+    app: hello-world
+spec:
+  selector:
+    matchLabels:
+      app: hello-world
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: hello-world
+    spec:
+      containers:
+      - name: hello-world
+        image: pfzoso/node-hw
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: hello-world
+spec:
+  selector:
+    app: hello-world
+  ports:
+    - protocol: TCP
+      port: 8082
+  externalIPs: [ 192.168.56.130 ]
+  type: NodePort

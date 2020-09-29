@@ -2,7 +2,7 @@ name: learn-github-actions
 on: [push]
 jobs:
   deploy:
-    runs-on: self-hosted
+    runs-on: [ self-hosted, k8s ]
     steps:
       - uses: actions/checkout@v2
       - run: kubectl create -f node-HW.yaml
